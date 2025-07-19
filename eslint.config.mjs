@@ -8,27 +8,34 @@ export default defineConfig([
   // JavaScriptベースの推奨設定
   js.configs.recommended,
 
-  // TypeScript推奨設定（配列なのでスプレッドする）
-  ...tseslint.configs.recommended,
+  // TypeScript 型チェック付き推奨設定（重要！）
+  ...tseslint.configs.recommendedTypeChecked,
 
   // React推奨設定
   pluginReact.configs.flat.recommended,
 
-  // ファイルの対象や環境設定
+  // カスタム設定（settings, files, plugins, rules など）
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     languageOptions: {
       globals: {
-        ...globals.node,
+        ...globals.node
       },
       parser: tseslint.parser,
       parserOptions: {
-        project: ['./tsconfig.json'], // ← 型チェックを使いたいならこれが必要
+        project: ['./tsconfig.json'],
         tsconfigRootDir: process.cwd()
       }
     },
     plugins: {
       '@typescript-eslint': tseslint.plugin,
+      react: pluginReact
+    },
+    settings: {
+      react: {
+        version: "detect"
+      }
+    },
     rules: {
       "react/react-in-jsx-scope": "off",
       "semi": ["error", "never"],
