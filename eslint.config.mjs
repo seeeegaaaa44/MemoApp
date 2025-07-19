@@ -20,9 +20,15 @@ export default defineConfig([
     languageOptions: {
       globals: {
         ...globals.node,
-        ...globals.browser
+      },
+      parser: tseslint.parser,
+      parserOptions: {
+        project: ['./tsconfig.json'], // ← 型チェックを使いたいならこれが必要
+        tsconfigRootDir: process.cwd()
       }
     },
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
     rules: {
       "react/react-in-jsx-scope": "off",
       "semi": ["error", "never"],
