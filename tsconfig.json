@@ -3,7 +3,10 @@
   "compilerOptions": {
     "strict": true,
     "jsx": "react-native",
-    "moduleResolution": "node",
+    "types": ["react", "react-native"],
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "customConditions": ["development"],
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
