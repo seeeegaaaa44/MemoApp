@@ -16,7 +16,6 @@ const handlePress = (id: string): void => {
 
 const Detail = (): JSX.Element => {
     const id = String(useLocalSearchParams().id)
-    console.log(id)
     const [memo, setMemo] = useState<Memo | null>(null)
     useEffect(() => {
         if (auth.currentUser === null) { return }
