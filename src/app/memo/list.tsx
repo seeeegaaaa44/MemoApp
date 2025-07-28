@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, FlatList } from 'react-native'
 import { JSX } from 'react/jsx-runtime'
 import { useEffect, useState } from 'react'
 import { router, useNavigation } from 'expo-router'
@@ -46,9 +46,10 @@ const List = (): JSX.Element => {
 
     return (
         <View style={styles.container}>
-            <View>
-                {memos.map((memo) => <MemoListItem memo={memo} />)}
-            </View>
+            <FlatList
+                data={memos}
+                renderItem={({ item }) =>  <MemoListItem memo={item} />}
+                />
             <CircleButton onPress={handlePress}>
                 <Icon name='plus' size={40} color='#ffffff'/>
             </CircleButton>
